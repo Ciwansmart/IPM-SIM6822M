@@ -1,4 +1,5 @@
 MODUL IPM SIM6822M
+Karya Anak Bangsa
 Developer    : Dev Ciwan
 Perusahaan   : Dunia Elektrical Indonesia (DEI)
 IG           : dei_teknik
@@ -6,6 +7,87 @@ YouTube      : dei_official
 Origin       : Made in Indonesia
 
 ====================================================
+
+KONFIGURASI PIN LIBRARY
+----------------------------------------------------
+
+SIM6822M ipm(
+2,3,4,   -> HIN U,V,W
+5,6,7,   -> LIN U,V,W
+8        -> FO (Fault Output)
+);
+
+#define BTN_START 10
+#define BTN_STOP  11
+
+====================================================
+KETERANGAN PIN DIGITAL
+====================================================
+
+D2  = HIN_U  (PWM Phase U High)
+D3  = HIN_V  (PWM Phase V High)
+D4  = HIN_W  (PWM Phase W High)
+
+D5  = LIN_U  (PWM Phase U Low)
+D6  = LIN_V  (PWM Phase V Low)
+D7  = LIN_W  (PWM Phase W Low)
+
+D8  = FO IPM (Fault Input - Active LOW)
+
+D10 = Tombol START
+D11 = Tombol STOP
+
+====================================================
+PIN ANALOG
+====================================================
+
+Basic test tidak menggunakan pin analog.
+
+Opsional pengembangan:
+A0 = Potensio Speed
+A1 = Sensor Arus
+A2 = Sensor Suhu
+A3 = Sensor Tegangan DC Bus
+
+====================================================
+JENIS SINYAL
+====================================================
+
+OUTPUT DIGITAL:
+Digunakan untuk HIN dan LIN
+HIGH = Aktif
+LOW  = Nonaktif
+
+INPUT DIGITAL:
+FO:
+LOW  = Fault Aktif
+HIGH = Normal
+
+Tombol:
+LOW = Tombol ditekan
+Mode INPUT_PULLUP
+
+====================================================
+WIRING TOMBOL
+====================================================
+
+D10 ---- Tombol ---- GND
+D11 ---- Tombol ---- GND
+
+Tidak perlu resistor tambahan.
+
+====================================================
+WIRING FAULT OUTPUT (FO)
+====================================================
+
+Tipe FO:
+Open Collector
+Active LOW
+
+Gunakan Pullup Resistor 10K ke 5V
+
+====================================================
+
 DESKRIPSI MODUL
 ====================================================
 
