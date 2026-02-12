@@ -1,0 +1,150 @@
+MODUL IPM SIM6822M
+Developer    : Dev Ciwan
+Perusahaan   : Dunia Elektrical Indonesia (DEI)
+IG           : dei_teknik
+YouTube      : dei_official
+Origin       : Made in Indonesia
+
+====================================================
+DESKRIPSI MODUL
+====================================================
+
+Modul inverter 3 Phase berbasis Intelligent Power Module
+SIM6822M untuk aplikasi inverter motor, kompresor AC
+inverter, BLDC driver, VFD experimental dan power test.
+
+====================================================
+SPESIFIKASI DAYA OUTPUT
+====================================================
+
+Tegangan DC Bus Maksimum :
+- 300 VDC (desain modul DEI)
+
+Tegangan Output Phase :
+- Maksimal sekitar 0 – 220VAC 3 Phase (tergantung PWM & DC Bus)
+
+Arus Output Kontinu :
+- ±10A – 15A kontinu (dengan heatsink memadai)
+
+Arus Output Peak :
+- hingga ±20A (durasi pendek)
+
+Daya Output Disarankan :
+- 500W – 1500W (bergantung pendinginan & desain sistem)
+
+====================================================
+SUHU OPERASI & BATAS ARUS
+====================================================
+
+Suhu Kerja Normal IPM :
+- 0°C – 100°C
+
+Proteksi Overheat Internal :
+- ±100°C – 110°C (Thermal Shutdown)
+
+Rekomendasi Arus vs Suhu:
+
+< 50°C   : aman hingga arus maksimum
+60°C     : disarankan < 80% arus
+70°C     : disarankan < 60% arus
+> 85°C   : turunkan beban
+>100°C   : IPM akan shutdown proteksi
+
+WAJIB:
+Gunakan heatsink + thermal paste.
+
+====================================================
+INPUT CONTROL MODUL
+====================================================
+
+Input HIN & LIN:
+- Resistor seri 100 Ohm
+- Kapasitor filter 10nF
+Fungsi:
+- EMI Filter
+- Proteksi spike
+- Stabilitas switching
+
+====================================================
+INPUT DC BUS
+====================================================
+
+Tegangan Maksimum:
+- 300VDC
+
+Proteksi:
+- Fuse DC Bus internal
+Fungsi:
+- Proteksi short awal
+- Proteksi overcurrent kasar
+
+====================================================
+REGULATOR TEGANGAN
+====================================================
+
+Input PSU:
+- 15V
+
+Output Regulator:
+- Supply IC mikrokontroler
+- Supply logic driver
+
+====================================================
+PIN FAULT OUTPUT (FO)
+====================================================
+
+Tipe:
+- Open Collector
+- Active LOW
+
+Kondisi:
+HIGH = Normal
+LOW  = Fault Aktif
+
+Rekomendasi:
+Gunakan pullup resistor 10K.
+
+Fault akan aktif jika:
+- Overcurrent
+- Short Circuit
+- Overheat
+- Undervoltage Driver
+
+====================================================
+PROTEKSI BAWAAN IPM
+====================================================
+
+1. OVER CURRENT PROTECTION (OCP)
+- Deteksi arus berlebih
+- Trip driver otomatis
+- FO menjadi LOW
+
+2. SHORT CIRCUIT PROTECTION
+- Deteksi hubung singkat
+- Shutdown switching
+- Proteksi IGBT internal
+
+3. UNDER VOLTAGE LOCKOUT (UVLO)
+- Jika supply driver drop
+- Driver dimatikan otomatis
+
+4. OVER TEMPERATURE PROTECTION (OTP)
+- Sensor suhu internal
+- Shutdown saat panas berlebih
+
+5. FAULT LATCH
+- Driver akan OFF sampai reset
+- Perlu restart PWM
+
+====================================================
+PERINGATAN KESELAMATAN
+====================================================
+
+Tegangan tinggi hingga 300VDC
+Berbahaya dan dapat menyebabkan cedera serius.
+
+Gunakan:
+- Isolasi yang baik
+- Grounding benar
+- Pendinginan cukup
+- Deadtime pada firmware
