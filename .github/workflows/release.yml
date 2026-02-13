@@ -1,0 +1,27 @@
+name: Arduino Library Auto Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Create ZIP Library
+      run: |
+        zip -r IPM_SIM6822M.zip . \
+        -x "*.git*" \
+        -x ".github/*"
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: IPM_SIM6822M.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
